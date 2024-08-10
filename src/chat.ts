@@ -1,6 +1,6 @@
 import ComfyJS, { OnCheerExtra, OnCheerFlags, OnMessageExtra, OnMessageFlags, OnSubExtra, SubMethods } from "comfy.js";
 
-type MessageCallback = (
+type ChatCallback = (
     user: string,
     message: string,
     flags: OnMessageFlags,
@@ -24,8 +24,8 @@ type SubCallback = (
 ) => void;
 
 export default function Chat(channelName: string) {
-    let chatCallback: MessageCallback | null = null;
-    const onChat = (callback: MessageCallback) => {
+    let chatCallback: ChatCallback | null = null;
+    const onChat = (callback: ChatCallback) => {
         chatCallback = callback;
     }
 
