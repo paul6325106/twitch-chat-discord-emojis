@@ -1,59 +1,41 @@
-import ComfyJS, { OnCheerExtra, OnCheerFlags, OnMessageExtra, OnMessageFlags, OnSubExtra, SubMethods } from "comfy.js";
+import ComfyJS, { Badges, EmoteSet } from "comfy.js";
 
-type ChatCallback = (
+interface Extra {
+    channel: string;
+    roomId: string;
+    messageEmotes?: EmoteSet;
+    userId: string;
+    username: string;
+    displayName: string;
+    userColor: string;
+    userBadges: Badges;
+}
+
+type MessageCallback = (
     user: string,
     message: string,
-    flags: OnMessageFlags,
     self: boolean,
-    extra: OnMessageExtra
-) => void;
-
-type CheerCallback = (
-    user: string,
-    message: string,
-    bits: number,
-    flags: OnCheerFlags,
-    extra: OnCheerExtra,
-) => void;
-
-type SubCallback = (
-    user: string,
-    message: string,
-    subTierInfo: SubMethods,
-    extra: OnSubExtra,
+    extra: Extra,
 ) => void;
 
 export default function Chat(channelName: string) {
-    // TODO single callback with fields for normal vs cheer vs sub
-    // TODO emote parsing? here?
-
-    let chatCallback: ChatCallback | null = null;
-    const onChat = (callback: ChatCallback) => {
-        chatCallback = callback;
-    }
-
-    let cheerCallback: CheerCallback | null = null;
-    const onCheer = (callback: CheerCallback) => {
-        cheerCallback = callback;
-    }
-
-    let subCallback: SubCallback | null = null;
-    const onSub = (callback: SubCallback) => {
-        subCallback = callback;
+    let messageCallback: MessageCallback | null = null;
+    const onMessage = (callback: MessageCallback) => {
+        messageCallback = callback;
     }
 
     ComfyJS.Init(channelName);
 
-    ComfyJS.onChat = (user, message, flags, self, extra) => {
-        chatCallback && chatCallback(user, message, flags, self, extra);
+    ComfyJS.onChat = (user, message, _flags, self, extra) => {
+        messageCallback && messageCallback(user, message, self, extra);
     }
 
-    ComfyJS.onCheer = (user, message, bits, flags, extra) => {
-        cheerCallback && cheerCallback(user, message, bits, flags, extra);
+    ComfyJS.onCheer = (user, message, _bits, _flags, extra) => {
+        messageCallback && messageCallback(user, message, false, extra);
     }
 
-    ComfyJS.onSub = (user, message, subTierInfo, extra) => {
-        subCallback && subCallback(user, message, subTierInfo, extra);
+    ComfyJS.onSub = (user, message, _subTierInfo, extra) => {
+        messageCallback && messageCallback(user, message, false, extra);
     }
 
     const disconnect = () => {
@@ -61,9 +43,7 @@ export default function Chat(channelName: string) {
     }
 
     return {
-        onChat,
-        onCheer,
-        onSub,
+        onMessage,
         disconnect,
     }
 }
