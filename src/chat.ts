@@ -24,6 +24,9 @@ type SubCallback = (
 ) => void;
 
 export default function Chat(channelName: string) {
+    // TODO single callback with fields for normal vs cheer vs sub
+    // TODO emote parsing? here?
+
     let chatCallback: ChatCallback | null = null;
     const onChat = (callback: ChatCallback) => {
         chatCallback = callback;
@@ -53,9 +56,14 @@ export default function Chat(channelName: string) {
         subCallback && subCallback(user, message, subTierInfo, extra);
     }
 
+    const disconnect = () => {
+        ComfyJS.Disconnect();
+    }
+
     return {
         onChat,
         onCheer,
         onSub,
+        disconnect,
     }
 }
