@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# twitch-chat-discord-emojis
 
 TODO
 
@@ -25,3 +25,5 @@ Set `dist/index.html` as a local file in a Browser Source in OBS
 Example of markup goes here, keep the markup simple
 
 Example of overriding font and colour
+
+Example of adding an animation to hide messages after a delay
