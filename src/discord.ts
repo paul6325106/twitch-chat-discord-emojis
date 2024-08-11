@@ -1,9 +1,9 @@
 import { DISCORD_GUILD_ID, DISCORD_TOKEN } from "./environment";
 
 export type DiscordEmoji = {
+    animated: boolean
     id: number
     name: string
-    animated: boolean
 }
 
 export type DiscordEmojiMap = {
@@ -21,7 +21,7 @@ interface DiscordData {
     ]
 }
 
-export async function getDiscordEmojis(): Promise<DiscordEmojiMap> {
+export async function fetchDiscordEmojis(): Promise<DiscordEmojiMap> {
     const emojis: DiscordEmojiMap = {};
 
     const url = `https://discordapp.com/api/v6/guilds/${DISCORD_GUILD_ID}`

@@ -1,50 +1,27 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TODO
 
-Currently, two official plugins are available:
+Example of an overlay that pulls emojis from Discord and allows viewers to use them in chat.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Building
 
-## Expanding the ESLint configuration
+Get a Discord token, google how to do it
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Get the Discord Guild ID, open the Discord in your browser and look for a url like `https://discord.com/channels/1234567890123456789`. That first number in the url is your Guild ID.
 
-- Configure the top-level `parserOptions` property like this:
+Your channel name, you should be able to figure out on your own.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Set values in `.env`
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Compile with `npm run build`
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Using the overlay
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Set `dist/index.html` as a local file in a Browser Source in OBS
+
+## Customising
+
+Example of markup goes here, keep the markup simple
+
+Example of overriding font and colour

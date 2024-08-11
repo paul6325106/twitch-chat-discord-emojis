@@ -1,6 +1,6 @@
 import ComfyJS, { Badges, EmoteSet } from "comfy.js";
 
-interface Extra {
+export interface Extra {
     channel: string;
     roomId: string;
     messageEmotes?: EmoteSet;

@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid';
+
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { Overlay, MessageProps } from './overlay';
+import { CHANNEL_NAME } from './environment';
+import Chat from './chat';
+import { parseMessage as parseFragments } from './parser';
+import { fetchDiscordEmojis } from './discord';
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+const MAX_MESSAGES = 20;
+
+function App() {
+    const [messages, setMessages] = useState<MessageProps[]>([]);
+
+    useEffect(() => {
+        const chat = Chat(CHANNEL_NAME);
+
+        fetchDiscordEmojis().then(discordEmojis => {
+            chat.onMessage((user, message, self, extra) => {
+                const fragments = parseFragments(message, extra, discordEmojis);
+                const uuid = uuidv4();
+                const newMessage = { user, message, self, extra, fragments, uuid };
+                setMessages(oldMessages => [...oldMessages.slice(1 - MAX_MESSAGES), newMessage]);
+            });
+        });
+
+        return chat.disconnect;
+    }, []);
+
+    return <Overlay messages={messages} />;
 }
 
 export default App
