@@ -30,12 +30,12 @@ function Message(props: MessageProps) {
 
 function DisplayName({ extra }: MessageProps) {
     const { displayName, userColor } = extra;
-    return <div className='displayName' style={{ color: userColor }}>{displayName}</div>;
+    return <span className='displayName' style={{ color: userColor }}>{displayName}</span>;
 }
 
 function Content({ fragments }: MessageProps) {
     return (
-        <div className='content'>
+        <span className='content'>
             {fragments.map(fragment => {
                 switch (fragment.type) {
                     case 'discord-emote':
@@ -46,7 +46,7 @@ function Content({ fragments }: MessageProps) {
                         return <TwitchEmote {...fragment} />;
                 }
             })}
-        </div>
+        </span>
     )
 }
 
@@ -61,6 +61,6 @@ function Text({ value }: TextFragment) {
 }
 
 function TwitchEmote({ id, name }: TwitchEmoteFragment) {
-    const url = `https://static-cdn.jtvnw.net/emoticons/v2/${id}/default/light/1.0`;
+    const url = `https://static-cdn.jtvnw.net/emoticons/v2/${id}/default/light/2.0`;
     return <img className='twitch-emote' src={url} alt={name} />;
 }

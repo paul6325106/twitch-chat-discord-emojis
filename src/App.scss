@@ -1,0 +1,43 @@
+html {
+    font-size: 26px;
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0);
+    margin: 0px auto;
+    overflow: hidden;
+    font-family: "Inter", "Roobert", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    height: 100vh;
+}
+
+#root {
+    height: 100%;
+}
+
+#messages-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 100%;
+}
+
+.message {
+    line-height: 40px;
+    text-shadow: 0 0 1px #000, 0 0 2px #000;
+    font-weight: 700;
+    color: rgb(239, 239, 241);
+    padding: 10px 40px;
+}
+
+.displayName {
+    vertical-align: middle;
+
+    &:after {
+        content: ': ';
+    }
+}
+
+.discord-emote, .twitch-emote {
+    max-height: 56px;
+    margin: -0.5rem 0;
+}

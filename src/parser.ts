@@ -64,19 +64,25 @@ function parseDiscordEmotes(fragments: Fragment[], discordEmojis: DiscordEmojiMa
     const newFragments: Fragment[] = []
 
     fragments.forEach(fragment => {
+
+        // only need to check text fragments
         if (fragment.type !== "text") {
             newFragments.push(fragment);
             return;
         }
 
+        // split the fragment, like we did before
         const fragmentArray: (string | null | Fragment)[] = fragment.value.split('');
 
+        // check for emote pattern, rather than iterate through a potentially huge set of emotes
         for (const match of fragment.value.matchAll(regexDiscordEmoji)) {
             const emojiName = match[1];
+
+            // if successful match, insert with placeholders as before
             if (emojiName in discordEmojis) {
                 fragmentArray[match.index] = { type: "discord-emote", ...discordEmojis[emojiName] };
 
-                for (let index = match.index + 1; index <= match.index + match[0].length; ++index) {
+                for (let index = match.index + 1; index <= match.index + match[0].length - 1; ++index) {
                     fragmentArray[index] = null;
                 }
             }
