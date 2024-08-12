@@ -32,15 +32,15 @@ You can inject custom CSS into your Browser Source in OBS.
 This is how the markup looks:
 
 ```html
-<div id='message-container'>
-    <div class='message'>
-        <span className='badges'>
-            <img class='badge' src='...' alt=''>
+<div id="message-container">
+    <div class="message">
+        <span className="badges">
+            <img class="badge" src="..." alt="">
         </span>
-        <span class='displayName'>VoodooCowboy</span>
-        <span class='text'>words words words</span>
-        <img class='twitch-emote' src='...' alt='sometwitchemote' />
-        <img class='discord-emote' src='...' alt='somediscordemote' />
+        <span class="displayName" style="color: SomeColour">VoodooCowboy</span>
+        <span class="text">words words words</span>
+        <img class="twitch-emote" src="..." alt="sometwitchemote" />
+        <img class="discord-emote" src="..." alt="somediscordemote" />
     </div>
 </div>
 ```
