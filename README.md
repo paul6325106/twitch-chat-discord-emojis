@@ -11,13 +11,14 @@ The Discord token is not used for anything else.
 
 ## Building
 
-* Install Node.js. I used v20.12.2.
+* Install [Node.js](https://nodejs.org/en). I used v20.12.2, but LTS is probably fine.
 * Get a Discord token, google how to do it.
 * Get the Discord Guild ID, open the Discord in your browser and look for a url like `https://discord.com/channels/1234567890123456789`. That first number in the url is your Guild ID.
 * Get your channel name, you should be able to figure it out on your own.
 * Set values in `.env`.
 * Compile with `npm run build`.
 
+This produces a single HTML file: `dist/index.html`.
 Don't give this file out to other people, it contains your Discord token in plaintext. Can't be helped.
 
 ## Using the overlay
