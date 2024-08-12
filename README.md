@@ -84,3 +84,11 @@ Example of adding an animation to hide messages after a delay:
     animation-fill-mode: forwards;
 }
 ```
+
+Example of hiding badges:
+
+```css
+.badges {
+    display: none;
+}
+```
