@@ -30,11 +30,18 @@ body {
     vertical-align: middle;
 }
 
+.badge {
+    height: 36px;
+    width: 36px;
+    margin: -9px 6px -9px 0;
+}
+
 .displayName:after {
     content: ': ';
 }
 
 .discord-emote, .twitch-emote {
     max-height: 56px;
+    width: auto;
     margin: -0.5rem 0;
 }

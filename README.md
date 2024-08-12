@@ -34,6 +34,9 @@ This is how the markup looks:
 ```html
 <div id='message-container'>
     <div class='message'>
+        <span className='badges'>
+            <img class='badge' src='...' alt=''>
+        </span>
         <span class='displayName'>VoodooCowboy</span>
         <span class='text'>words words words</span>
         <img class='twitch-emote' src='...' alt='sometwitchemote' />

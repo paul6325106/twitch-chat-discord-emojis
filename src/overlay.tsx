@@ -1,3 +1,4 @@
+import BadgeUrls from "./badge-urls";
 import { Extra } from "./chat";
 import getRandomColour from "./colour";
 import { DiscordEmoteFragment, Fragment, TextFragment, TwitchEmoteFragment } from "./parser";
@@ -23,10 +24,36 @@ export function Overlay({ messages }: OverlayProps) {
 function Message(props: MessageProps) {
     return (
         <div className='message'>
+            <Badges {...props} />
             <DisplayName {...props} />
             <Content {...props} />
         </div>
     )
+}
+
+function Badges({ extra }: MessageProps) {
+    return (
+        <span className='badges'>
+            {Object.keys(extra.userBadges).map(setId =>
+                <Badge setId={setId} />
+            )}
+        </span>
+    )
+}
+
+interface BadgeProps {
+    setId: string
+}
+
+function Badge({ setId }: BadgeProps) {
+    const url = BadgeUrls[setId];
+
+    if (url) {
+        return <img className='badge' src={url} alt=''/>
+    } else {
+        return null;
+    }
+
 }
 
 function DisplayName({ extra }: MessageProps) {
