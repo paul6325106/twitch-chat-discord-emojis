@@ -16,6 +16,7 @@ The Discord token is not used for anything else.
 * Get the Discord Guild ID, open the Discord in your browser and look for a url like `https://discord.com/channels/1234567890123456789`. That first number in the url is your Guild ID.
 * Get your channel name, you should be able to figure it out on your own.
 * Set values in `.env`.
+* Install dependencies with `npm install`.
 * Compile with `npm run build`.
 
 This produces a single HTML file: `dist/index.html`.
