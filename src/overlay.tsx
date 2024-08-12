@@ -1,4 +1,5 @@
 import { Extra } from "./chat";
+import getRandomColour from "./colour";
 import { DiscordEmoteFragment, Fragment, TextFragment, TwitchEmoteFragment } from "./parser";
 
 interface OverlayProps {
@@ -30,7 +31,8 @@ function Message(props: MessageProps) {
 
 function DisplayName({ extra }: MessageProps) {
     const { displayName, userColor } = extra;
-    return <span className='displayName' style={{ color: userColor }}>{displayName}</span>;
+    const appliedColor = userColor ? userColor : getRandomColour(extra.displayName);
+    return <span className='displayName' style={{ color: appliedColor }}>{displayName}</span>;
 }
 
 function Content({ fragments }: MessageProps) {
