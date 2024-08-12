@@ -1,29 +1,74 @@
 # twitch-chat-discord-emojis
 
-TODO
+Simple Twitch chat overlay that pulls emojis from Discord and allows viewers to use them in chat.
+Also, it displays messages coming through cheers, subs, and regular chat.
 
-Example of an overlay that pulls emojis from Discord and allows viewers to use them in chat.
+## How does this work?
+
+On launch, a single request is made to `https://discordapp.com/api/v6/guilds/${DISCORD_GUILD_ID}`.
+This retrieves any emotes for that Discord Guild that the associated user has access to.
+The Discord token is not used for anything else.
 
 ## Building
 
-Get a Discord token, google how to do it
+* Install Node.js. I used v20.12.2.
+* Get a Discord token, google how to do it.
+* Get the Discord Guild ID, open the Discord in your browser and look for a url like `https://discord.com/channels/1234567890123456789`. That first number in the url is your Guild ID.
+* Get your channel name, you should be able to figure it out on your own.
+* Set values in `.env`.
+* Compile with `npm run build`.
 
-Get the Discord Guild ID, open the Discord in your browser and look for a url like `https://discord.com/channels/1234567890123456789`. That first number in the url is your Guild ID.
-
-Your channel name, you should be able to figure out on your own.
-
-Set values in `.env`
-
-Compile with `npm run build`
+Don't give this file out to other people, it contains your Discord token in plaintext. Can't be helped.
 
 ## Using the overlay
 
-Set `dist/index.html` as a local file in a Browser Source in OBS
+Set `dist/index.html` as a local file in a Browser Source in OBS.
 
 ## Customising
 
-Example of markup goes here, keep the markup simple
+You can inject custom CSS into your Browser Source in OBS.
 
-Example of overriding font and colour
+This is how the markup looks:
 
-Example of adding an animation to hide messages after a delay
+```html
+<div id='message-container'>
+    <div class='message'>
+        <span class='displayName'>VoodooCowboy</span>
+        <span class='text'>words words words</span>
+        <img class='twitch-emote' src='...' alt='sometwitchemote' />
+        <img class='discord-emote' src='...' alt='somediscordemote' />
+    </div>
+</div>
+```
+
+Example of overriding colours:
+
+```css
+.displayName {
+    color: blue !important;
+}
+
+.text {
+    color: red;
+}
+```
+
+Example of adding an animation to hide messages after a delay:
+
+```css
+@keyframes hide {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.message {
+    animation-name: hide;
+    animation-delay: 10s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+```
