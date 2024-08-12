@@ -27,14 +27,11 @@ body {
     font-weight: 700;
     color: rgb(239, 239, 241);
     padding: 10px 40px;
+    vertical-align: middle;
 }
 
-.displayName {
-    vertical-align: middle;
-
-    &:after {
-        content: ': ';
-    }
+.displayName:after {
+    content: ': ';
 }
 
 .discord-emote, .twitch-emote {
