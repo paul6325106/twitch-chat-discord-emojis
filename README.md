@@ -53,6 +53,14 @@ Example of overriding colours:
 }
 ```
 
+Example of changing font:
+
+```css
+.message {
+    font-family: "Comic Sans MS", "Comic Sans", cursive !important;
+}
+```
+
 Example of adding an animation to hide messages after a delay:
 
 ```css
