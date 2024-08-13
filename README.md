@@ -35,7 +35,7 @@ This is how the markup looks:
 ```html
 <div id="message-container">
     <div class="message">
-        <span className="badges">
+        <span class="badges">
             <img class="badge" src="..." alt="">
         </span>
         <span class="displayName" style="color: SomeColour">VoodooCowboy</span>
