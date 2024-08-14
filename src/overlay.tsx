@@ -34,8 +34,8 @@ function Message(props: MessageProps) {
 function Badges({ extra }: MessageProps) {
     return (
         <span className='badges'>
-            {Object.keys(extra.userBadges || {}).map(setId =>
-                <Badge setId={setId} />
+            {Object.keys(extra.userBadges || {}).map((setId, i) =>
+                <Badge key={i} setId={setId} />
             )}
         </span>
     )
@@ -65,14 +65,14 @@ function DisplayName({ extra }: MessageProps) {
 function Content({ fragments }: MessageProps) {
     return (
         <span className='content'>
-            {fragments.map(fragment => {
+            {fragments.map((fragment, i) => {
                 switch (fragment.type) {
                     case 'discord-emote':
-                        return <DiscordEmote {...fragment} />;
+                        return <DiscordEmote key={i} {...fragment} />;
                     case 'text':
-                        return <Text {...fragment} />;
+                        return <Text key={i} {...fragment} />;
                     case 'twitch-emote':
-                        return <TwitchEmote {...fragment} />;
+                        return <TwitchEmote key={i} {...fragment} />;
                 }
             })}
         </span>
