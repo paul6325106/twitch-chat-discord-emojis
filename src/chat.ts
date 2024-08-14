@@ -39,6 +39,10 @@ export default function Chat(channelName: string) {
         ComfyJS.onSub = (user, message, _subTierInfo, extra) => {
             messageCallback && messageCallback(user, message, false, extra);
         }
+
+        ComfyJS.onResub = (user, message, _streamMonths, _cumulativeMonths, _subTierInfo, extra) => {
+            messageCallback && messageCallback(user, message, false, extra);
+        }
     }
 
     const disconnect = () => {
