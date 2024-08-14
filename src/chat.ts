@@ -40,6 +40,7 @@ export default function Chat(channelName: string) {
             messageCallback && messageCallback(type, user, message, self, extra);
         }
 
+        // TODO need to figure out best way to do cheermote substitution
         ComfyJS.onCheer = (user, message, _bits, _flags, extra) => {
             messageCallback && messageCallback('cheer', user, message, false, extra);
         }

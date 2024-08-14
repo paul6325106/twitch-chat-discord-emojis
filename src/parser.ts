@@ -26,8 +26,6 @@ export function parseMessage(type: MessageType, message: string, extra: Extra, d
 }
 
 function parseTwitchEmotes(_type: MessageType, message: string, extra: Extra): Fragment[] {
-    // TODO if type === 'cheer', sub out /(  |^)Cheer([0-9]+)(  |$)/
-
     // split the message into pieces
     const messageArray: (string | null | Fragment)[] = message.split('');
 
