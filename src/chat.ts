@@ -31,6 +31,7 @@ export default function Chat(channelName: string) {
             messageCallback && messageCallback(user, message, self, extra);
         }
 
+        // TODO bits don't come through in emotes but can be distributed through messages
         ComfyJS.onCheer = (user, message, _bits, _flags, extra) => {
             messageCallback && messageCallback(user, message, false, extra);
         }
