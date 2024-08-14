@@ -34,7 +34,7 @@ function Message(props: MessageProps) {
 function Badges({ extra }: MessageProps) {
     return (
         <span className='badges'>
-            {Object.keys(extra.userBadges).map(setId =>
+            {Object.keys(extra.userBadges || {}).map(setId =>
                 <Badge setId={setId} />
             )}
         </span>
