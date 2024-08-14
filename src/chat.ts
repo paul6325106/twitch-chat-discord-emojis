@@ -11,7 +11,15 @@ export interface Extra {
     userBadges: Badges;
 }
 
+export type MessageType =
+    | 'normal'
+    | 'highlighted'
+    | 'cheer'
+    | 'sub'
+    | 'resub';
+
 type MessageCallback = (
+    type: MessageType,
     user: string,
     message: string,
     self: boolean,
@@ -27,21 +35,21 @@ export default function Chat(channelName: string) {
     const connect = () => {
         ComfyJS.Init(channelName);
 
-        ComfyJS.onChat = (user, message, _flags, self, extra) => {
-            messageCallback && messageCallback(user, message, self, extra);
+        ComfyJS.onChat = (user, message, flags, self, extra) => {
+            const type = flags.highlighted ? 'highlighted' : 'normal';
+            messageCallback && messageCallback(type, user, message, self, extra);
         }
 
-        // TODO bits don't come through in emotes but can be distributed through messages
         ComfyJS.onCheer = (user, message, _bits, _flags, extra) => {
-            messageCallback && messageCallback(user, message, false, extra);
+            messageCallback && messageCallback('cheer', user, message, false, extra);
         }
 
         ComfyJS.onSub = (user, message, _subTierInfo, extra) => {
-            messageCallback && messageCallback(user, message, false, extra);
+            messageCallback && messageCallback('sub', user, message, false, extra);
         }
 
         ComfyJS.onResub = (user, message, _streamMonths, _cumulativeMonths, _subTierInfo, extra) => {
-            messageCallback && messageCallback(user, message, false, extra);
+            messageCallback && messageCallback('resub', user, message, false, extra);
         }
     }
 

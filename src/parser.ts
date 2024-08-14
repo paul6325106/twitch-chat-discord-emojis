@@ -1,4 +1,4 @@
-import { Extra } from "./chat";
+import { Extra, MessageType } from "./chat";
 import { DiscordEmojiMap } from "./discord";
 
 export type TextFragment = {
@@ -21,11 +21,13 @@ export type DiscordEmoteFragment = {
 
 export type Fragment = TextFragment | TwitchEmoteFragment | DiscordEmoteFragment;
 
-export function parseMessage(message: string, extra: Extra, discordEmojis: DiscordEmojiMap): Fragment[] {
-    return parseDiscordEmotes(parseTwitchEmotes(message, extra), discordEmojis);
+export function parseMessage(type: MessageType, message: string, extra: Extra, discordEmojis: DiscordEmojiMap): Fragment[] {
+    return parseDiscordEmotes(parseTwitchEmotes(type, message, extra), discordEmojis);
 }
 
-function parseTwitchEmotes(message: string, extra: Extra): Fragment[] {
+function parseTwitchEmotes(_type: MessageType, message: string, extra: Extra): Fragment[] {
+    // TODO if type === 'cheer', sub out /(  |^)Cheer([0-9]+)(  |$)/
+
     // split the message into pieces
     const messageArray: (string | null | Fragment)[] = message.split('');
 

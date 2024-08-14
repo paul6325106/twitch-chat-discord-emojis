@@ -18,10 +18,10 @@ function App() {
         const chat = Chat(CHANNEL_NAME);
 
         fetchDiscordEmojis().then(discordEmojis => {
-            chat.onMessage((user, message, self, extra) => {
-                const fragments = parseFragments(message, extra, discordEmojis);
+            chat.onMessage((type, user, message, self, extra) => {
+                const fragments = parseFragments(type, message, extra, discordEmojis);
                 const uuid = uuidv4();
-                const newMessage = { user, message, self, extra, fragments, uuid };
+                const newMessage = { type, user, message, self, extra, fragments, uuid };
                 setMessages(oldMessages => [...oldMessages.slice(1 - MAX_MESSAGES), newMessage]);
             });
         });

@@ -1,5 +1,5 @@
 import BadgeUrls from "./badge-urls";
-import { Extra } from "./chat";
+import { Extra, MessageType } from "./chat";
 import getRandomColour from "./colour";
 import { DiscordEmoteFragment, Fragment, TextFragment, TwitchEmoteFragment } from "./parser";
 
@@ -8,6 +8,7 @@ interface OverlayProps {
 }
 
 export interface MessageProps {
+    type: MessageType
     extra: Extra
     fragments: Fragment[];
     uuid: string;
@@ -23,7 +24,7 @@ export function Overlay({ messages }: OverlayProps) {
 
 function Message(props: MessageProps) {
     return (
-        <div className='message'>
+        <div className={`message ${props.type}`}>
             <Badges {...props} />
             <DisplayName {...props} />
             <Content {...props} />
@@ -53,7 +54,6 @@ function Badge({ setId }: BadgeProps) {
     } else {
         return null;
     }
-
 }
 
 function DisplayName({ extra }: MessageProps) {

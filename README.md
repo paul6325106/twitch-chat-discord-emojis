@@ -34,7 +34,7 @@ This is how the markup looks:
 
 ```html
 <div id="message-container">
-    <div class="message">
+    <div class="message normal">
         <span class="badges">
             <img class="badge" src="..." alt="">
         </span>
@@ -46,7 +46,15 @@ This is how the markup looks:
 </div>
 ```
 
-Example of overriding colours:
+Messages can have the following classes, allow you to add extra styling conditionally:
+
+* `normal`
+* `highlighted`
+* `cheer`
+* `sub`
+* `resub`
+
+### Example of overriding colours:
 
 ```css
 .displayName {
@@ -58,7 +66,7 @@ Example of overriding colours:
 }
 ```
 
-Example of changing font:
+### Example of changing font:
 
 ```css
 .message {
@@ -66,7 +74,7 @@ Example of changing font:
 }
 ```
 
-Example of adding an animation to hide messages after a delay:
+### Example of adding an animation to hide messages after a delay:
 
 ```css
 @keyframes hide {
@@ -86,7 +94,7 @@ Example of adding an animation to hide messages after a delay:
 }
 ```
 
-Example of hiding badges:
+### Example of hiding badges:
 
 ```css
 .badges {
