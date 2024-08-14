@@ -40,7 +40,8 @@ export default function Chat(channelName: string) {
             messageCallback && messageCallback(type, user, message, self, extra);
         }
 
-        // TODO need to figure out best way to do cheermote substitution
+        // TODO https://dev.twitch.tv/docs/api/reference/#get-cheermotes
+        // TODO requires an app access token or user access token
         ComfyJS.onCheer = (user, message, _bits, _flags, extra) => {
             messageCallback && messageCallback('cheer', user, message, false, extra);
         }
