@@ -24,18 +24,20 @@ export default function Chat(channelName: string) {
         messageCallback = callback;
     }
 
-    ComfyJS.Init(channelName);
+    const connect = () => {
+        ComfyJS.Init(channelName);
 
-    ComfyJS.onChat = (user, message, _flags, self, extra) => {
-        messageCallback && messageCallback(user, message, self, extra);
-    }
+        ComfyJS.onChat = (user, message, _flags, self, extra) => {
+            messageCallback && messageCallback(user, message, self, extra);
+        }
 
-    ComfyJS.onCheer = (user, message, _bits, _flags, extra) => {
-        messageCallback && messageCallback(user, message, false, extra);
-    }
+        ComfyJS.onCheer = (user, message, _bits, _flags, extra) => {
+            messageCallback && messageCallback(user, message, false, extra);
+        }
 
-    ComfyJS.onSub = (user, message, _subTierInfo, extra) => {
-        messageCallback && messageCallback(user, message, false, extra);
+        ComfyJS.onSub = (user, message, _subTierInfo, extra) => {
+            messageCallback && messageCallback(user, message, false, extra);
+        }
     }
 
     const disconnect = () => {
@@ -44,6 +46,7 @@ export default function Chat(channelName: string) {
 
     return {
         onMessage,
+        connect,
         disconnect,
     }
 }

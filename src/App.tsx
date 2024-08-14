@@ -26,7 +26,11 @@ function App() {
             });
         });
 
-        return chat.disconnect;
+        chat.connect();
+
+        return () => {
+            chat.disconnect();
+        }
     }, []);
 
     return <Overlay messages={messages} />;
