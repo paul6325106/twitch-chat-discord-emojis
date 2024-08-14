@@ -21,11 +21,29 @@ export type DiscordEmoteFragment = {
 
 export type Fragment = TextFragment | TwitchEmoteFragment | DiscordEmoteFragment;
 
-export function parseMessage(type: MessageType, message: string, extra: Extra, discordEmojis: DiscordEmojiMap): Fragment[] {
-    return parseDiscordEmotes(parseTwitchEmotes(type, message, extra), discordEmojis);
+export function parseMessage(
+    type: MessageType,
+    message: string,
+    bits: number,
+    extra: Extra,
+    discordEmojis: DiscordEmojiMap
+): Fragment[] {
+    const extraWithCheermotes = parseCheermotes(type, message, bits, extra);
+    const fragmentsWithTwitchEmotes = parseTwitchEmotes(message, extraWithCheermotes);
+    return parseDiscordEmotes(fragmentsWithTwitchEmotes, discordEmojis);
 }
 
-function parseTwitchEmotes(_type: MessageType, message: string, extra: Extra): Fragment[] {
+function parseCheermotes(_type: MessageType, _message: string, _bits: number, extra: Extra): Extra {
+    // https://dev.twitch.tv/docs/api/reference/#get-cheermotes
+    // requires an app access token or user access token
+    // however, we know if a message is a cheer, we know the total bits, and we know what a cheermote looks like
+    // so we're going to try and parse out the bits, sub in the default emotes, and have a solution that avoids auth
+
+    // TODO
+    return extra;
+}
+
+function parseTwitchEmotes(message: string, extra: Extra): Fragment[] {
     // split the message into pieces
     const messageArray: (string | null | Fragment)[] = message.split('');
 

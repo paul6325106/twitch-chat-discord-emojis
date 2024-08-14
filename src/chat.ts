@@ -23,6 +23,7 @@ type MessageCallback = (
     user: string,
     message: string,
     self: boolean,
+    bits: number,
     extra: Extra,
 ) => void;
 
@@ -37,21 +38,19 @@ export default function Chat(channelName: string) {
 
         ComfyJS.onChat = (user, message, flags, self, extra) => {
             const type = flags.highlighted ? 'highlighted' : 'normal';
-            messageCallback && messageCallback(type, user, message, self, extra);
+            messageCallback && messageCallback(type, user, message, self, 0, extra);
         }
 
-        // TODO https://dev.twitch.tv/docs/api/reference/#get-cheermotes
-        // TODO requires an app access token or user access token
-        ComfyJS.onCheer = (user, message, _bits, _flags, extra) => {
-            messageCallback && messageCallback('cheer', user, message, false, extra);
+        ComfyJS.onCheer = (user, message, bits, _flags, extra) => {
+            messageCallback && messageCallback('cheer', user, message, false, bits, extra);
         }
 
         ComfyJS.onSub = (user, message, _subTierInfo, extra) => {
-            messageCallback && messageCallback('sub', user, message, false, extra);
+            messageCallback && messageCallback('sub', user, message, false, 0, extra);
         }
 
         ComfyJS.onResub = (user, message, _streamMonths, _cumulativeMonths, _subTierInfo, extra) => {
-            messageCallback && messageCallback('resub', user, message, false, extra);
+            messageCallback && messageCallback('resub', user, message, false, 0, extra);
         }
     }
 
