@@ -55,7 +55,7 @@ Messages can have the following classes, allow you to add extra styling conditio
 
 ### Examples
 
-#### Example of overriding colours
+#### Overriding colours
 
 ```css
 .displayName {
@@ -67,7 +67,7 @@ Messages can have the following classes, allow you to add extra styling conditio
 }
 ```
 
-#### Example of changing font
+#### Changing fonts
 
 ```css
 .message {
@@ -75,7 +75,7 @@ Messages can have the following classes, allow you to add extra styling conditio
 }
 ```
 
-#### Example of adding an animation to hide messages after a delay
+#### Adding an animation to hide messages after a delay
 
 ```css
 @keyframes hide {
@@ -95,7 +95,7 @@ Messages can have the following classes, allow you to add extra styling conditio
 }
 ```
 
-#### Example of hiding badges
+#### Hiding badges
 
 ```css
 .badges {
@@ -103,7 +103,7 @@ Messages can have the following classes, allow you to add extra styling conditio
 }
 ```
 
-#### Example of a user specific formatting
+#### User specific formatting
 
 ```css
 .voodoocowboy {
