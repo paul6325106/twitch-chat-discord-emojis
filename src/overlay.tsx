@@ -26,7 +26,7 @@ export function Overlay({ messages }: OverlayProps) {
 function Message(props: MessageProps) {
     const { type, user } = props;
     return (
-        <div className={`message ${type} ${user}`}>
+        <div className={`message ${type} ${user.toLowerCase()}`}>
             <Badges {...props} />
             <DisplayName {...props} />
             <Content {...props} />
