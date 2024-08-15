@@ -46,11 +46,15 @@ export default function Chat(channelName: string) {
         }
 
         ComfyJS.onSub = (user, message, _subTierInfo, extra) => {
-            messageCallback && messageCallback('sub', user, message, false, 0, extra);
+            if (message) {
+                messageCallback && messageCallback('sub', user, message, false, 0, extra);
+            }
         }
 
         ComfyJS.onResub = (user, message, _streamMonths, _cumulativeMonths, _subTierInfo, extra) => {
-            messageCallback && messageCallback('resub', user, message, false, 0, extra);
+            if (message) {
+                messageCallback && messageCallback('resub', user, message, false, 0, extra);
+            }
         }
     }
 
