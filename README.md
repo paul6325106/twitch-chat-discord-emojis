@@ -34,7 +34,7 @@ This is how the markup looks:
 
 ```html
 <div id="message-container">
-    <div class="message normal">
+    <div class="message normal voodoocowboy">
         <span class="badges">
             <img class="badge" src="..." alt="">
         </span>
@@ -46,13 +46,12 @@ This is how the markup looks:
 </div>
 ```
 
-Messages can have the following classes, allow you to add extra styling conditionally:
+### Message classes
 
-* `normal`
-* `highlighted`
-* `cheer`
-* `sub`
-* `resub`
+Messages can have the following classes, allow you to add extra styling conditionally.
+
+* The account name: e.g. `voodoocowboy`
+* The message type: `normal`, `highlighted`, `cheer`, `sub`, `resub`
 
 ### Example of overriding colours:
 

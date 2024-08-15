@@ -8,6 +8,7 @@ interface OverlayProps {
 }
 
 export interface MessageProps {
+    user: string
     type: MessageType
     extra: Extra
     fragments: Fragment[];
@@ -23,8 +24,9 @@ export function Overlay({ messages }: OverlayProps) {
 }
 
 function Message(props: MessageProps) {
+    const { type, user } = props;
     return (
-        <div className={`message ${props.type}`}>
+        <div className={`message ${type} ${user}`}>
             <Badges {...props} />
             <DisplayName {...props} />
             <Content {...props} />
