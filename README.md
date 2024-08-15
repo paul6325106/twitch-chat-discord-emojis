@@ -53,7 +53,9 @@ Messages can have the following classes, allow you to add extra styling conditio
 * The account name: e.g. `voodoocowboy`
 * The message type: `normal`, `highlighted`, `cheer`, `sub`, `resub`
 
-### Example of overriding colours:
+### Examples
+
+#### Example of overriding colours
 
 ```css
 .displayName {
@@ -65,7 +67,7 @@ Messages can have the following classes, allow you to add extra styling conditio
 }
 ```
 
-### Example of changing font:
+#### Example of changing font
 
 ```css
 .message {
@@ -73,7 +75,7 @@ Messages can have the following classes, allow you to add extra styling conditio
 }
 ```
 
-### Example of adding an animation to hide messages after a delay:
+#### Example of adding an animation to hide messages after a delay
 
 ```css
 @keyframes hide {
@@ -93,10 +95,19 @@ Messages can have the following classes, allow you to add extra styling conditio
 }
 ```
 
-### Example of hiding badges:
+#### Example of hiding badges
 
 ```css
 .badges {
     display: none;
+}
+```
+
+#### Example of a user specific formatting
+
+```css
+.voodoocowboy {
+    background-color: rgba(177, 231, 111, 0.5);
+    border-radius: 25px;
 }
 ```
