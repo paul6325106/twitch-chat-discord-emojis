@@ -37,7 +37,7 @@ export async function fetchDiscordEmojis(): Promise<DiscordEmojiMap> {
     data.emojis.forEach(emoji => {
         if (emoji.available) {
             const name = emoji.name;
-            emojis[name] = {
+            emojis[name.toLowerCase()] = {
                 animated: emoji.animated,
                 id: emoji.id,
                 name,

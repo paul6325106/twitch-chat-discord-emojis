@@ -94,7 +94,7 @@ function parseDiscordEmotes(fragments: Fragment[], discordEmojis: DiscordEmojiMa
 
         // check for emote pattern, rather than iterate through a potentially huge set of emotes
         for (const match of fragment.value.matchAll(regexDiscordEmoji)) {
-            const emojiName = match[1];
+            const emojiName = match[1].toLowerCase();
 
             // if successful match, insert with placeholders as before
             if (emojiName in discordEmojis) {
