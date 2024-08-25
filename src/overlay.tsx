@@ -65,6 +65,23 @@ function DisplayName({ extra }: MessageProps) {
 }
 
 function Content({ fragments }: MessageProps) {
+    if (isSingleEmote(fragments)) {
+        const fragment = fragments[0];
+        if (fragment.type === 'discord-emote') {
+            return (
+                <div className='content'>
+                    <BigDiscordEmote {...fragment} />
+                </div>
+            );
+        } else if (fragment.type === 'twitch-emote') {
+            return (
+                <div className='content'>
+                    <BigTwitchEmote {...fragment} />
+                </div>
+            );
+        }
+    }
+
     return (
         <span className='content'>
             {fragments.map((fragment, i) => {
@@ -81,10 +98,20 @@ function Content({ fragments }: MessageProps) {
     )
 }
 
+function isSingleEmote(fragments: Fragment[]): boolean {
+    return fragments.length === 1 && fragments[0].type.includes('emote');
+}
+
 function DiscordEmote({ animated, id, name }: DiscordEmoteFragment) {
     const format = animated ? 'gif': 'webp';
     const url = `https://cdn.discordapp.com/emojis/${id}.${format}?size=56&quality=lossless`
     return <img className='discord-emote' src={url} alt={name} />;
+}
+
+function BigDiscordEmote({ animated, id, name }: DiscordEmoteFragment) {
+    const format = animated ? 'gif': 'webp';
+    const url = `https://cdn.discordapp.com/emojis/${id}.${format}?size=128&quality=lossless`
+    return <img className='discord-emote-big' src={url} alt={name} />;
 }
 
 function Text({ value }: TextFragment) {
@@ -94,4 +121,9 @@ function Text({ value }: TextFragment) {
 function TwitchEmote({ id, name }: TwitchEmoteFragment) {
     const url = `https://static-cdn.jtvnw.net/emoticons/v2/${id}/default/light/2.0`;
     return <img className='twitch-emote' src={url} alt={name} />;
+}
+
+function BigTwitchEmote({ id, name }: TwitchEmoteFragment) {
+    const url = `https://static-cdn.jtvnw.net/emoticons/v2/${id}/default/light/3.0`;
+    return <img className='twitch-emote-big' src={url} alt={name} />;
 }
