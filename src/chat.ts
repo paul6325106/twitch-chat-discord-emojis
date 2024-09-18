@@ -41,6 +41,11 @@ export default function Chat(channelName: string) {
             messageCallback && messageCallback(type, user, message, self, 0, extra);
         }
 
+        ComfyJS.onCommand = ( user, command, message, flags, extra ) => {
+            const type = flags.highlighted ? 'highlighted' : 'normal';
+            messageCallback && messageCallback(type, user, `!${command} ${message}`, false, 0, extra);
+        }
+
         ComfyJS.onCheer = (user, message, bits, _flags, extra) => {
             messageCallback && messageCallback('cheer', user, message, false, bits, extra);
         }
